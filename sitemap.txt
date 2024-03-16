@@ -1,3 +1,4 @@
+http://example.com/2024/03/06/test1/
 http://example.com/categories/index.html
 http://example.com/tags/index.html
 http://example.com/custom-name/index.html
