@@ -40,10 +40,10 @@ href=&quot;https://github.com/chongshengsun/hexo-theme-apollo?tab=readme-ov-file
   
   <entry>
     <title>test1</title>
-    <link href="http://example.com/2024/03/06/test/test1/"/>
-    <id>http://example.com/2024/03/06/test/test1/</id>
+    <link href="http://example.com/2024/03/06/test1/"/>
+    <id>http://example.com/2024/03/06/test1/</id>
     <published>2024-03-06T14:56:16.000Z</published>
-    <updated>2024-03-06T14:56:16.470Z</updated>
+    <updated>2024-03-08T13:49:37.156Z</updated>
     
     <content type="html"><![CDATA[]]></content>
     
@@ -61,10 +61,10 @@ href=&quot;https://github.com/chongshengsun/hexo-theme-apollo?tab=readme-ov-file
   
   <entry>
     <title>test1</title>
-    <link href="http://example.com/2024/03/06/test1/"/>
-    <id>http://example.com/2024/03/06/test1/</id>
+    <link href="http://example.com/2024/03/06/test/test1/"/>
+    <id>http://example.com/2024/03/06/test/test1/</id>
     <published>2024-03-06T14:56:16.000Z</published>
-    <updated>2024-03-08T13:49:37.156Z</updated>
+    <updated>2024-03-06T14:56:16.470Z</updated>
     
     <content type="html"><![CDATA[]]></content>
     
