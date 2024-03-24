@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>test1</title>
+    <url>/2024/03/06/test1/</url>
+    <content><![CDATA[
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/03/06/test/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2024/03/07/blog%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p>主题：<a
+href="https://github.com/chongshengsun/hexo-theme-apollo?tab=readme-ov-file">GitHub
+- chongshengsun/hexo-theme-apollo: 🌅 a concise hexo theme</a></p>
+<p>主题库：<a href="https://hexo.io/themes/">Themes | Hexo</a></p>
+<p>教程：<a href="https://zhuanlan.zhihu.com/p/111614119">（一）Github +
+Hexo 搭建个人博客超详细教程 - 知乎 (zhihu.com)</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/26625249">GitHub+Hexo
+搭建个人网站详细教程 - 知乎 (zhihu.com)</a></p>
+<p>主要参考前两个搭建</p>
+<p>https://sspai.com/post/59337</p>
+<p><a
+href="https://github.com/Byron4j/CookBook/blob/master/Git/1-Github_Hexo搭建个人博客.md">CookBook/Git/1-Github_Hexo搭建个人博客.md
+at master · Byron4j/CookBook · GitHub</a></p>
+<p><a
+href="https://docs.github.com/zh/pages/quickstart#changing-the-title-and-description">GitHub
+Pages 快速入门 - GitHub 文档</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/github-pages">在 GitHub Pages
+上部署 Hexo | Hexo</a></p>
+<p><a href="https://github.com/hexojs/awesome-hexo">GitHub -
+hexojs/awesome-hexo: A curated list of awesome things related to
+Hexo</a></p>
+<h1 id="使用github和hexo搭建个人网站">使用GitHub和hexo搭建个人网站</h1>
+<h2 id="一安装步骤">一、安装步骤：</h2>
+<h3 id="在电脑上安装node.js-和-git">1. 在电脑上安装node.js 和 git</h3>
+<p>这是git教程<a
+href="https://www.liaoxuefeng.com/wiki/896043488029600">Git教程 -
+廖雪峰的官方网站 (liaoxuefeng.com)</a></p>
+<p>安装成功后，需要将Git和GitHub账号进行绑定，具体操作如下，鼠标右键打开git
+bash（或者直接win+r cmd），需要设置user.name 和user.email配置信息：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;Github 用户名&quot;</span><br><span class="line">git config --global user.email &quot;Github 注册邮箱&quot;</span><br><span class="line"></span><br><span class="line"># 生成ssh密钥连接github</span><br><span class="line">ssh-keygen -t rsa -C &quot;github 注册邮箱&quot;</span><br><span class="line"># 如果更改密钥文件名称，需加上路径，不然可能是就生成在桌面了</span><br><span class="line"># 这里会显示要设置密码，可直接回车跳过</span><br></pre></td></tr></table></figure>
+<p>接下来找到刚才生成的id_rsa.pub密钥，复制全部内容；打开<a
+href="https://link.zhihu.com/?target=https%3A//github.com/settings/keys">GitHub_Settings_keys</a>
+页面，新建new SSH
+Key，title是标题，可随意填写，然后将刚才复制的id_rsa.pub密钥内容黏贴进去，最后点击Add
+SSH key即完成配置。</p>
+<p>可在cmd或git bash中检查是否连接成功：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></table></figure>
+<p>设置免密连接目的如下：</p>
+<ul>
+<li>GitHub要求每次推送代码的都是合法用户，所以每次推送都需要输入账密验证，ssh可以用公私玥进行配对从而实现免密登录。</li>
+</ul>
+<p>验证node.js是否安装成功：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h3 id="github创建个人名字的仓库">2. GitHub创建个人名字的仓库</h3>
+<p>这里只需要注意仓库名应该是 用户名.github.io
+，且设置为public即可。</p>
+<h3 id="安装hexo">3. 安装hexo</h3>
+<p>在电脑里创建一个空文件夹Blog（别的名字也可以），hexo框架与以后发布的网页都会存在这里面。</p>
+<p>创建好，进入文件夹，在当前位置打开cmd，使用如下命令安装hexo：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"># hexo -v检验是否安装成功，可能需要重启命令行</span><br><span class="line"></span><br><span class="line"># 安装完成，初始化博客</span><br><span class="line">hexo init blog</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"># 这些指令要在blog目录下执行</span><br><span class="line">hexo new test_my_site</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"># 打开浏览器输入localhost:<span class="number">4000</span> 可以查看</span><br></pre></td></tr></table></figure>
+<p>常用的hexo命令：</p>
+<ul>
+<li><p>hexo s等价于 hexo server ：Hexo
+会监视文件变动并自动更新，除修改站点配置文件外,无须重启服务器,直接刷新网页即可生效。</p></li>
+<li><p>hexo g 等价于 hexo generate ：生成静态网页 (执行 $ hexo g
+后会在站点根目录下生成public&gt;文件夹, hexo会将"&lt;font /blog/source/"
+下面的.md后缀的文件编译为.html后缀的文件,存放在"/blog/public/ "
+路径下)</p></li>
+<li><p>hexo d 等价于 hexo deploy
+：将本地数据部署到远端服务器(如github)</p></li>
+<li><p>hexo clean ：</p></li>
+<li><p>清除缓存
+,网页正常情况下可以忽略此条命令,执行该指令后,会删掉站点根目录下的public文件夹</p>
+<p>hexo server #Hexo会监视文件变动并自动更新，无须重启服务器 hexo server
+-s #静态模式 hexo server -p 5000 #更改端口 hexo server -i 192.168.1.1
+#自定义 IP</p></li>
+</ul>
+<h3 id="推送网站">4. 推送网站</h3>
+<p>根目录里有一个 “_config.yml”文件，称为站点配置文件；</p>
+<p>根目录的themes文件夹里也有“ _config.yml”文件，称为主题配置文件。</p>
+<p>打开站点配置文件，在最后，修改为</p>
+<p><img src="D:/Master/note/assets/image-20240307095317332.png" alt="image-20240307095317332" style="zoom:60%;" /></p>
+<p>其实就是给hexo d
+这个命令做相应的配置，让hexo知道你要把blog部署在哪个位置，很显然，我们部署在我们GitHub的仓库里。最后安装Git部署插件，输入命令：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"># 然后输入</span><br><span class="line">hexo clean </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br><span class="line"># 即可在githubname.github.io网站查看blog</span><br></pre></td></tr></table></figure>
+<h3 id="绑定域名">5. 绑定域名</h3>
+<p>登录阿里云，进入管理控制台的域名列表，找到自己的个性化域名，进入解析。</p>
+<p>添加解析：需要添加两个记录</p>
+<ul>
+<li>第一个主机记录是@，第二个主机记录是www，记录值都是博客地址（"name".github.io）或博客IP地址（cmd
+ping博客地址可得到）</li>
+</ul>
+<p>登录GitHub，进入github名的仓库，在settings的pages里的custom
+domain输入自己的域名。</p>
+<p>进入本地博客文件夹，在blog/source目录中，创建一个记事本文件，输入自己的域名，建议不带www，若有，则以后每次访问都需要加www，没有的话可加可不加都能访问。保存为CNAME，要保存成所有文件而不是.txt文件。</p>
+<p>进入blog目录</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>之后就可以从域名访问啦！</p>
+<h3 id="修改主题">6. 修改主题</h3>
+<p>把默认主题更改成想要更改的主题：在blog目录中（就是命令行的位置处于blog目录）打开命令行输入：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git clone “主题GitHub地址” themes/主题名</span><br></pre></td></tr></table></figure>
+<p>即可将主题下载到blog目录的themes文件夹中。</p>
+<p>接下来打开站点配置文件，修改主题：</p>
+<p><img src="D:/Master/note/assets/image-20240307095912812.png" alt="image-20240307095912812" style="zoom:80%;" /></p>
+<p>主题的配置可以代开主题配置文件进行配置：</p>
+<p>可查阅相关资料</p>
+<h3 id="图床">7. 图床</h3>
+<p>博文中有图片当然可以把图片放在source文件夹，但会导致加载较慢。可以把图片上传到别的网站，获得外部链接，使用markdown语法<img
+src="外部链接" alt="图片信息" />完成图片插入，这种网站就是图床。</p>
+<p><a href="http://www.tietuku.com/">贴图库 —
+免费、高速、稳定、专业图片外链 (tietuku.com)</a></p>
+<p>新浪微博</p>
+<p><a href="https://www.qiniu.com/">七牛云 | 一站式场景化智能音视频
+APaaS (qiniu.com)</a></p>
+<h3 id="个性化设置">8. 个性化设置</h3>
+<p>站点配置文件修改</p>
+<figure>
+<img src="D:/Master/note/assets/image-20240307100440913.png"
+alt="image-20240307100440913" />
+<figcaption aria-hidden="true">image-20240307100440913</figcaption>
+</figure>
+<p>其中依次是 网站标题、副标题，网站描述，关键词，作者，语言，时区。</p>
+<p>可以加入</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">avatar:</span> <span class="string">外部链接</span> <span class="comment"># 网站头像的外部链接</span></span><br></pre></td></tr></table></figure>
+<p>主题配置文件可以修改基本的主题信息</p>
+<figure>
+<img src="D:/Master/note/assets/image-20240306232009424.png"
+alt="image-20240306232009424" />
+<figcaption aria-hidden="true">image-20240306232009424</figcaption>
+</figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>test1</title>
+    <url>/2024/03/06/test/test1/</url>
+    <content><![CDATA[
+]]></content>
+  </entry>
+</search>
