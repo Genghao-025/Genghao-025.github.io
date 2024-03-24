@@ -1,4 +1,4 @@
-http://kelm025.cn/2024/03/06/blog%E6%90%AD%E5%BB%BA/
+http://kelm025.cn/2024/03/24/blog%E6%90%AD%E5%BB%BA/
 http://kelm025.cn/categories/index.html
 http://kelm025.cn/tags/index.html
 http://kelm025.cn/custom-name/index.html
@@ -7,3 +7,4 @@ http://kelm025.cn/2024/03/06/test/hello-world/
 http://kelm025.cn/
 http://kelm025.cn/tags/%E6%95%99%E7%A8%8B/
 http://kelm025.cn/categories/Blog%E6%90%AD%E5%BB%BA/
+http://kelm025.cn/categories/Blog/

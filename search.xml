@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Blog搭建教程</title>
-    <url>/2024/03/06/blog%E6%90%AD%E5%BB%BA/</url>
+    <url>/2024/03/24/blog%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<p>主题：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Nob25nc2hlbmdzdW4vaGV4by10aGVtZS1hcG9sbG8/dGFiPXJlYWRtZS1vdi1maWxl">GitHub
 - chongshengsun/hexo-theme-apollo: 🌅 a concise hexo theme<i class="fa fa-external-link-alt"></i></span></p>
 <p>主题库：<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3RoZW1lcy8=">Themes | Hexo<i class="fa fa-external-link-alt"></i></span></p>
@@ -21,8 +21,6 @@ Pages 快速入门 - GitHub 文档<i class="fa fa-external-link-alt"></i></span>
 <p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9hd2Vzb21lLWhleG8=">GitHub -
 hexojs/awesome-hexo: A curated list of awesome things related to
 Hexo<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9saW5rLmp1ZWppbi5jbi8/dGFyZ2V0PWh0dHBzJTNBJTJGJTJGdGhlbWUtbmV4dC5qcy5vcmclMkZoaWdobGlnaHQlMkY=">theme-next.js.org/highlight/<i class="fa fa-external-link-alt"></i></span>
-可以查看各种代码风格主题</p>
 <h1 id="使用github和hexo搭建个人网站">使用GitHub和hexo搭建个人网站</h1>
 <h2 id="一安装步骤">一、安装步骤：</h2>
 <h3 id="在电脑上安装node.js-和-git">1. 在电脑上安装node.js 和 git</h3>
@@ -71,7 +69,14 @@ SSH key即完成配置。</p>
 <p>根目录里有一个 “_config.yml”文件，称为站点配置文件；</p>
 <p>根目录的themes文件夹里也有“ _config.yml”文件，称为主题配置文件。</p>
 <p>打开站点配置文件，在最后，修改为</p>
-<p><img src="D:/Master/note/assets/image-20240307095317332.png" alt="image-20240307095317332" style="zoom:60%;" /></p>
+<p><img src="D:/Github-blog/blog/source/_posts/assets/image-20240307095317332.png" alt="image-20240307095317332" style="zoom:60%;" /></p>
+<p>还需要修改站点配置文件的16行，</p>
+<figure>
+<img
+src="D:/Github-blog/blog/source/_posts/assets/image-20240324163348120.png"
+alt="image-20240324163348120" />
+<figcaption aria-hidden="true">image-20240324163348120</figcaption>
+</figure>
 <p>其实就是给hexo d
 这个命令做相应的配置，让hexo知道你要把blog部署在哪个位置，很显然，我们部署在我们GitHub的仓库里。最后安装Git部署插件，输入命令：</p>
 <figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"># 然后输入</span><br><span class="line">hexo clean </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br><span class="line"># 即可在githubname.github.io网站查看blog</span><br></pre></td></tr></table></figure>
@@ -93,12 +98,13 @@ domain输入自己的域名。</p>
 <figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git clone “主题GitHub地址” themes/主题名</span><br></pre></td></tr></table></figure>
 <p>即可将主题下载到blog目录的themes文件夹中。</p>
 <p>接下来打开站点配置文件，修改主题：</p>
-<p><img src="D:/Master/note/assets/image-20240307095912812.png" alt="image-20240307095912812" style="zoom:80%;" /></p>
+<p><img src="D:/Github-blog/blog/source/_posts/assets/image-20240307095912812.png" alt="image-20240307095912812" style="zoom:80%;" /></p>
 <p>主题的配置可以代开主题配置文件进行配置：</p>
 <p>可查阅相关资料</p>
 <h3 id="图床">7. 图床</h3>
 <p>博文中有图片当然可以把图片放在source文件夹，但会导致加载较慢。可以把图片上传到别的网站，获得外部链接，使用markdown语法<img
-src="外部链接" alt="图片信息" />完成图片插入，这种网站就是图床。</p>
+src="D:/Master/note/%25E5%25A4%2596%25E9%2583%25A8%25E9%2593%25BE%25E6%258E%25A5"
+alt="图片信息" />完成图片插入，这种网站就是图床。</p>
 <p><span class="exturl" data-url="aHR0cDovL3d3dy50aWV0dWt1LmNvbS8=">贴图库 —
 免费、高速、稳定、专业图片外链 (tietuku.com)<i class="fa fa-external-link-alt"></i></span></p>
 <p>新浪微博</p>
@@ -107,7 +113,8 @@ APaaS (qiniu.com)<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="个性化设置">8. 个性化设置</h3>
 <p>站点配置文件修改</p>
 <figure>
-<img src="D:/Master/note/assets/image-20240307100440913.png"
+<img
+src="D:/Github-blog/blog/source/_posts/assets/image-20240307100440913.png"
 alt="image-20240307100440913" />
 <figcaption aria-hidden="true">image-20240307100440913</figcaption>
 </figure>
@@ -116,13 +123,68 @@ alt="image-20240307100440913" />
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">avatar:</span> <span class="string">外部链接</span> <span class="comment"># 网站头像的外部链接</span></span><br></pre></td></tr></table></figure>
 <p>主题配置文件可以修改基本的主题信息</p>
 <figure>
-<img src="D:/Master/note/assets/image-20240306232009424.png"
+<img
+src="D:/Github-blog/blog/source/_posts/assets/image-20240306232009424.png"
 alt="image-20240306232009424" />
 <figcaption aria-hidden="true">image-20240306232009424</figcaption>
 </figure>
+<h2 id="二主题设置">二、主题设置</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FzNDgwMTMzOTM3L2FydGljbGUvZGV0YWlscy8xMDAxMzg4Mzg=">Hexo-Next
+主题博客个性化配置超详细，超全面(两万字)_hexo next
+记录访问了ip-CSDN博客<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82MTg4NjQ3MTE=">Hexo+Next主题搭建个人博客+优化全过程（完整详细版）
+- 知乎 (zhihu.com)<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubWlja2V5bWlhby50b3AvcG9zdHMvZjliOGNlYi8=">hexo
+NexT主题美化总结 | MickeyMiao<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="隐藏页面底部-由-hexo-next.muse-强力驱动">1. 隐藏页面底部 ‘由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span> &amp; <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse<i class="fa fa-external-link-alt"></i></span> 强力驱动’</h3>
+<p>打开主题配置文件：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="comment"># Specify the year when the site was setup. If not defined, current year will be used.</span></span><br><span class="line">  <span class="comment">#since: 2021</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Icon between year and copyright info.</span></span><br><span class="line">  <span class="attr">icon:</span></span><br><span class="line">    <span class="comment"># Icon name in Font Awesome. See: https://fontawesome.com/icons</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">fa</span> <span class="string">fa-heart</span></span><br><span class="line">    <span class="comment"># If you want to animate the icon, set it to true.</span></span><br><span class="line">    <span class="attr">animated:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># Change the color of icon, using Hex Code.</span></span><br><span class="line">    <span class="attr">color:</span> <span class="string">&quot;#ff0000&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># If not defined, `author` from Hexo `_config.yml` will be used.</span></span><br><span class="line">  <span class="comment"># Set to `false` to disable the copyright statement.</span></span><br><span class="line">  <span class="attr">copyright:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Powered by Hexo &amp; NexT</span></span><br><span class="line">  <span class="attr">powered:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, https://beian.mps.gov.cn</span></span><br><span class="line">  <span class="attr">beian:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">false</span> <span class="comment"># 这里改为false</span></span><br><span class="line">    <span class="attr">icp:</span></span><br><span class="line">    <span class="comment"># The digit in the num of gongan beian.</span></span><br><span class="line">    <span class="attr">gongan_id:</span></span><br><span class="line">    <span class="comment"># The full num of gongan beian.</span></span><br><span class="line">    <span class="attr">gongan_num:</span></span><br><span class="line">    <span class="comment"># The icon for gongan beian. Login and See: https://beian.mps.gov.cn/web/business/businessHome/website</span></span><br><span class="line">    <span class="attr">gongan_icon_url:</span></span><br></pre></td></tr></table></figure>
+<h3 id="显示当前浏览记录">2. 显示当前浏览记录</h3>
+<p>打开"_config.next.yml"这个文件，找到 scrollpercent:
+true，修改为true，这里已修改。</p>
+<h3 id="local-search-本地搜索">3. local search 本地搜索</h3>
+<p>安装插件：hexo-generator-searchdb，在blog文件夹内执行：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<p>然后修改"_config.yml" 文件，新增以下内容到任意位置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+<p>然后编辑"_config.next.yml"这个主题配置文件，启动本地搜索功能：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="一键返回顶部">4. 一键返回顶部</h3>
+<p>修改主题配置文件：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">back2top:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Back to top in sidebar.</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Scroll percent label in b2t button.</span></span><br><span class="line">  <span class="attr">scrollpercent:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="统计网站观看人数">5. 统计网站观看人数</h3>
+<p>主题配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_visitors:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_visitors_icon:</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br><span class="line">  <span class="attr">total_views:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_views_icon:</span> <span class="string">fa</span> <span class="string">fa-eye</span></span><br><span class="line">  <span class="attr">post_views:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">post_views_icon:</span> <span class="string">far</span> <span class="string">fa-eye</span></span><br></pre></td></tr></table></figure>
+<h3 id="博客头像">6. 博客头像</h3>
+<p>主题配置文件：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="comment">#/images/avatar.gif # 这里放头像图片的位置</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be displayed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">false</span> <span class="comment"># 头像圆形显示</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h3 id="添加侧边栏社交图片">7. 添加侧边栏社交图片</h3>
+<p>对这里进行更改</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Social Links</span></span><br><span class="line"><span class="comment"># Usage: `Key: permalink || icon`</span></span><br><span class="line"><span class="comment"># Key is the link label showing to end users.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="attr">social:</span></span><br><span class="line">  <span class="comment">#GitHub: https://github.com/yourname || fab fa-github</span></span><br><span class="line">  <span class="comment">#E-Mail: mailto:yourname@gmail.com || fa fa-envelope</span></span><br><span class="line">  <span class="comment">#Weibo: https://weibo.com/yourname || fab fa-weibo</span></span><br><span class="line">  <span class="comment">#Twitter: https://twitter.com/yourname || fab fa-twitter</span></span><br><span class="line">  <span class="comment">#FB Page: https://www.facebook.com/yourname || fab fa-facebook</span></span><br><span class="line">  <span class="comment">#StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow</span></span><br><span class="line">  <span class="comment">#YouTube: https://youtube.com/yourname || fab fa-youtube</span></span><br><span class="line">  <span class="comment">#Instagram: https://instagram.com/yourname || fab fa-instagram</span></span><br><span class="line">  <span class="comment">#Skype: skype:yourname?call|chat || fab fa-skype</span></span><br></pre></td></tr></table></figure>
+<h3 id="添加网站运行时间">8. 添加网站运行时间</h3>
+<p>~~在blog/source 中新建
+_data文件夹，在文件夹中添加footer.njk文件，修改相关内容为网站建站日期：~~</p>
+<p>直接在blog_partials.njk中添加以下代码：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;!--</span> <span class="string">&lt;br</span> <span class="string">/&gt;</span> <span class="string">--&gt;</span></span><br><span class="line"><span class="string">&lt;!--</span> <span class="string">网站运行时间的设置</span> <span class="string">--&gt;</span></span><br><span class="line"><span class="string">&lt;span</span> <span class="string">id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;</span></span><br><span class="line"><span class="string">&lt;!--</span> <span class="string">&lt;span</span> <span class="string">id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;</span> <span class="string">--&gt;</span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line">  <span class="string">var</span> <span class="string">now</span> <span class="string">=</span> <span class="string">new</span> <span class="string">Date();</span></span><br><span class="line">  <span class="string">function</span> <span class="string">createtime()</span> &#123;</span><br><span class="line">    <span class="string">var</span> <span class="string">grt=</span> <span class="string">new</span> <span class="string">Date(&quot;02/29/2024</span> <span class="number">00</span><span class="string">:00:00&quot;);//此处修改你的建站时间或者网站上线时间</span></span><br><span class="line">    <span class="string">now.setTime(now.getTime()+250);</span></span><br><span class="line">    <span class="string">days</span> <span class="string">=</span> <span class="string">(now</span> <span class="bullet">-</span> <span class="string">grt</span> <span class="string">)</span> <span class="string">/</span> <span class="number">1000</span> <span class="string">/</span> <span class="number">60</span> <span class="string">/</span> <span class="number">60</span> <span class="string">/</span> <span class="number">24</span><span class="string">;</span> <span class="string">dnum</span> <span class="string">=</span> <span class="string">Math.floor(days);</span></span><br><span class="line">    <span class="string">hours</span> <span class="string">=</span> <span class="string">(now</span> <span class="bullet">-</span> <span class="string">grt</span> <span class="string">)</span> <span class="string">/</span> <span class="number">1000</span> <span class="string">/</span> <span class="number">60</span> <span class="string">/</span> <span class="number">60</span> <span class="bullet">-</span> <span class="string">(24</span> <span class="string">*</span> <span class="string">dnum);</span> <span class="string">hnum</span> <span class="string">=</span> <span class="string">Math.floor(hours);</span></span><br><span class="line">    <span class="string">if(String(hnum).length</span> <span class="string">==1</span> <span class="string">)</span>&#123;<span class="string">hnum</span> <span class="string">=</span> <span class="string">&quot;0&quot;</span> <span class="string">+</span> <span class="string">hnum;</span>&#125; <span class="string">minutes</span> <span class="string">=</span> <span class="string">(now</span> <span class="bullet">-</span> <span class="string">grt</span> <span class="string">)</span> <span class="string">/</span> <span class="number">1000</span> <span class="string">/60</span> <span class="bullet">-</span> <span class="string">(24</span> <span class="string">*</span> <span class="number">60</span> <span class="string">*</span> <span class="string">dnum)</span> <span class="bullet">-</span> <span class="string">(60</span> <span class="string">*</span> <span class="string">hnum);</span></span><br><span class="line">    <span class="string">mnum</span> <span class="string">=</span> <span class="string">Math.floor(minutes);</span> <span class="string">if(String(mnum).length</span> <span class="string">==1</span> <span class="string">)</span>&#123;<span class="string">mnum</span> <span class="string">=</span> <span class="string">&quot;0&quot;</span> <span class="string">+</span> <span class="string">mnum;</span>&#125;</span><br><span class="line">    <span class="string">seconds</span> <span class="string">=</span> <span class="string">(now</span> <span class="bullet">-</span> <span class="string">grt</span> <span class="string">)</span> <span class="string">/</span> <span class="number">1000</span> <span class="bullet">-</span> <span class="string">(24</span> <span class="string">*</span> <span class="number">60</span> <span class="string">*</span> <span class="number">60</span> <span class="string">*</span> <span class="string">dnum)</span> <span class="bullet">-</span> <span class="string">(60</span> <span class="string">*</span> <span class="number">60</span> <span class="string">*</span> <span class="string">hnum)</span> <span class="bullet">-</span> <span class="string">(60</span> <span class="string">*</span> <span class="string">mnum);</span></span><br><span class="line">    <span class="string">snum</span> <span class="string">=</span> <span class="string">Math.round(seconds);</span> </span><br><span class="line">    <span class="string">if(String(snum).length</span> <span class="string">==1</span> <span class="string">)</span>&#123;<span class="string">snum</span> <span class="string">=</span> <span class="string">&quot;0&quot;</span> <span class="string">+</span> <span class="string">snum;</span>&#125;</span><br><span class="line">    <span class="string">//</span> <span class="string">var</span> <span class="string">times</span> <span class="string">=</span> <span class="string">document.getElementById(&quot;times&quot;).innerHTML</span> <span class="string">=</span> <span class="string">hnum</span> <span class="string">+</span> <span class="string">&quot; 小时 &quot;</span> <span class="string">+</span> <span class="string">mnum</span> <span class="string">+</span> <span class="string">&quot; 分 &quot;</span> <span class="string">+</span> <span class="string">snum</span> <span class="string">+</span> <span class="string">&quot; 秒&quot;</span><span class="string">;</span></span><br><span class="line">    <span class="string">document.getElementById(&quot;timeDate&quot;).innerHTML</span> <span class="string">=</span> <span class="string">&quot;本站已安全运行 &quot;</span><span class="string">+dnum+&quot;</span> <span class="string">天</span> <span class="string">&quot;+hnum + &quot;</span> <span class="string">小时</span> <span class="string">&quot; + mnum + &quot;</span> <span class="string">分</span> <span class="string">&quot; + snum + &quot;</span> <span class="string">秒&quot;;</span></span><br><span class="line">   &#125;</span><br><span class="line"><span class="string">setInterval(&quot;createtime()&quot;,250);</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后修改主题配置文件，取消以下注释：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">    <span class="attr">footer:</span> <span class="string">source/_data/footer.swig</span></span><br></pre></td></tr></table></figure>
+<h3 id="侧边栏最近文章">9. 侧边栏最近文章</h3>
+<p>在blog_data文件夹,在文件夹中添加sidebar.njk文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- recent posts --&gt;</span><br><span class="line">&#123;%- if theme.recent_posts %&#125;</span><br><span class="line">    &lt;div class=&quot;links-of-blogroll motion-element &#123;&#123; &quot;links-of-blogroll-&quot; + theme.recent_posts_layout &#125;&#125;&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;links-of-blogroll-title recent-posts-title&quot;&gt;</span><br><span class="line">        &lt;i class=&quot;fa fa-history &#123;&#123; theme.recent_posts_icon | lower &#125;&#125;&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">            &#123;&#123; theme.recent_posts_title &#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-blogroll-list recent-posts-list&quot;&gt;</span><br><span class="line">        &#123;%- set posts = site.posts.sort(&#x27;-date&#x27;).toArray() %&#125;</span><br><span class="line">        &#123;%- for post in posts.slice(&#x27;0&#x27;, &#x27;5&#x27;) %&#125;</span><br><span class="line">            &lt;li class=&quot;my-links-of-blogroll-item&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;&#123;&#123; url_for(post.path) &#125;&#125;&quot; title=&quot;&#123;&#123; post.title &#125;&#125;&quot; target=&quot;&quot;&gt;</span><br><span class="line">            &#123;&#123; post.title &#125;&#125;</span><br><span class="line">            &lt;/a&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">        &#123;%- endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="设置侧边框圆角">10. 设置侧边框圆角</h3>
+<p>在blog_data文件夹,在文件夹中添加variables.styl文件，在这个文件中添加如下代码</p>
+<figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 圆角设置</span></span><br><span class="line"><span class="meta"><span class="keyword">$border</span>-radius-inner     = 20px 20px 20px 20px;</span></span><br><span class="line"><span class="meta"><span class="keyword">$border</span>-radius           = 20px;</span></span><br></pre></td></tr></table></figure>
+<p>在主题配置文件中解开custom_file_path 的 variable的注释。</p>
+<p>圆角可能会有阴影，原因是开启 back2top 的 sidebar 和
+scrollpercent，back2top的阴影背景覆盖了圆角，把阴影背景改为透明便可解决，因为我们需要的只是scrollpercent。/themes/next/source/css/_variables/Gemini.styl<code>内代码,将</code>$body-bg-color<code>赋值为透明</code>transparent</p>
+<h3 id="更换博客背景">11. 更换博客背景</h3>
+<p>把准备好的背景图放入
+<code>themes\hexo-theme-next\source\images</code> 中</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">//背景图片设置</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">   <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">/images/background.jpg</span>);</span><br><span class="line">   <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">   <span class="attribute">background-attachment</span>: fixed;</span><br><span class="line">   <span class="attribute">background-size</span>: <span class="number">100%</span> <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在主题配置文件中解开custom_file_path 的 style的注释。</p>
 ]]></content>
       <categories>
-        <category>Blog搭建</category>
+        <category>Blog</category>
       </categories>
       <tags>
         <tag>教程</tag>
