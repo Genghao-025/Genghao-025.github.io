@@ -1,8 +1,8 @@
-https://genghao-025.github.io/2024/03/06/test1/
-https://genghao-025.github.io/categories/index.html
-https://genghao-025.github.io/tags/index.html
-https://genghao-025.github.io/custom-name/index.html
-https://genghao-025.github.io/2024/03/07/blog%E6%90%AD%E5%BB%BA/
-https://genghao-025.github.io/2024/03/06/test/test1/
-https://genghao-025.github.io/2024/03/06/test/hello-world/
-https://genghao-025.github.io/
+http://kelm025.cn/2024/03/06/test1/
+http://kelm025.cn/categories/index.html
+http://kelm025.cn/tags/index.html
+http://kelm025.cn/custom-name/index.html
+http://kelm025.cn/2024/03/07/blog%E6%90%AD%E5%BB%BA/
+http://kelm025.cn/2024/03/06/test/test1/
+http://kelm025.cn/2024/03/06/test/hello-world/
+http://kelm025.cn/
