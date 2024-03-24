@@ -3,11 +3,11 @@
   <title>Kelm2的个人博客</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://genghao-025.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://genghao-025.github.io/"/>
   <updated>2024-03-07T05:37:18.610Z</updated>
-  <id>http://example.com/</id>
+  <id>https://genghao-025.github.io/</id>
   
   <author>
     <name>kelm2</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title></title>
-    <link href="http://example.com/2024/03/07/blog%E6%90%AD%E5%BB%BA/"/>
-    <id>http://example.com/2024/03/07/blog%E6%90%AD%E5%BB%BA/</id>
+    <link href="https://genghao-025.github.io/2024/03/07/blog%E6%90%AD%E5%BB%BA/"/>
+    <id>https://genghao-025.github.io/2024/03/07/blog%E6%90%AD%E5%BB%BA/</id>
     <published>2024-03-07T10:21:07.159Z</published>
     <updated>2024-03-07T05:37:18.610Z</updated>
     
@@ -40,8 +40,8 @@ href=&quot;https://github.com/chongshengsun/hexo-theme-apollo?tab=readme-ov-file
   
   <entry>
     <title>test1</title>
-    <link href="http://example.com/2024/03/06/test1/"/>
-    <id>http://example.com/2024/03/06/test1/</id>
+    <link href="https://genghao-025.github.io/2024/03/06/test1/"/>
+    <id>https://genghao-025.github.io/2024/03/06/test1/</id>
     <published>2024-03-06T14:56:16.000Z</published>
     <updated>2024-03-08T13:49:37.156Z</updated>
     
@@ -61,8 +61,8 @@ href=&quot;https://github.com/chongshengsun/hexo-theme-apollo?tab=readme-ov-file
   
   <entry>
     <title>test1</title>
-    <link href="http://example.com/2024/03/06/test/test1/"/>
-    <id>http://example.com/2024/03/06/test/test1/</id>
+    <link href="https://genghao-025.github.io/2024/03/06/test/test1/"/>
+    <id>https://genghao-025.github.io/2024/03/06/test/test1/</id>
     <published>2024-03-06T14:56:16.000Z</published>
     <updated>2024-03-06T14:56:16.470Z</updated>
     
@@ -82,8 +82,8 @@ href=&quot;https://github.com/chongshengsun/hexo-theme-apollo?tab=readme-ov-file
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2024/03/06/test/hello-world/"/>
-    <id>http://example.com/2024/03/06/test/hello-world/</id>
+    <link href="https://genghao-025.github.io/2024/03/06/test/hello-world/"/>
+    <id>https://genghao-025.github.io/2024/03/06/test/hello-world/</id>
     <published>2024-03-06T14:45:19.130Z</published>
     <updated>2024-03-06T14:45:19.130Z</updated>
     
