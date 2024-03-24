@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kelm025.cn/2024/03/06/blog%E6%90%AD%E5%BB%BA/</loc>
+    
+    <lastmod>2024-03-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://kelm025.cn/categories/index.html</loc>
     
     <lastmod>2024-03-07</lastmod>
@@ -21,15 +30,6 @@
   
   <url>
     <loc>http://kelm025.cn/custom-name/index.html</loc>
-    
-    <lastmod>2024-03-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://kelm025.cn/2024/03/07/blog%E6%90%AD%E5%BB%BA/</loc>
     
     <lastmod>2024-03-07</lastmod>
     
@@ -64,6 +64,20 @@
   </url>
 
   
+  <url>
+    <loc>http://kelm025.cn/tags/%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2024-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>http://kelm025.cn/categories/Blog%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2024-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>

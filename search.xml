@@ -1,46 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>test1</title>
-    <url>/2024/03/06/test/test1/</url>
-    <content><![CDATA[
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2024/03/07/blog%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<p>主题：<a
-href="https://github.com/chongshengsun/hexo-theme-apollo?tab=readme-ov-file">GitHub
-- chongshengsun/hexo-theme-apollo: 🌅 a concise hexo theme</a></p>
-<p>主题库：<a href="https://hexo.io/themes/">Themes | Hexo</a></p>
-<p>教程：<a href="https://zhuanlan.zhihu.com/p/111614119">（一）Github +
-Hexo 搭建个人博客超详细教程 - 知乎 (zhihu.com)</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/26625249">GitHub+Hexo
-搭建个人网站详细教程 - 知乎 (zhihu.com)</a></p>
+    <title>Blog搭建教程</title>
+    <url>/2024/03/06/blog%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p>主题：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Nob25nc2hlbmdzdW4vaGV4by10aGVtZS1hcG9sbG8/dGFiPXJlYWRtZS1vdi1maWxl">GitHub
+- chongshengsun/hexo-theme-apollo: 🌅 a concise hexo theme<i class="fa fa-external-link-alt"></i></span></p>
+<p>主题库：<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3RoZW1lcy8=">Themes | Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<p>教程：<span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xMTE2MTQxMTk=">（一）Github +
+Hexo 搭建个人博客超详细教程 - 知乎 (zhihu.com)<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8yNjYyNTI0OQ==">GitHub+Hexo
+搭建个人网站详细教程 - 知乎 (zhihu.com)<i class="fa fa-external-link-alt"></i></span></p>
 <p>主要参考前两个搭建</p>
 <p>https://sspai.com/post/59337</p>
-<p><a
-href="https://github.com/Byron4j/CookBook/blob/master/Git/1-Github_Hexo搭建个人博客.md">CookBook/Git/1-Github_Hexo搭建个人博客.md
-at master · Byron4j/CookBook · GitHub</a></p>
-<p><a
-href="https://docs.github.com/zh/pages/quickstart#changing-the-title-and-description">GitHub
-Pages 快速入门 - GitHub 文档</a></p>
-<p><a href="https://hexo.io/zh-cn/docs/github-pages">在 GitHub Pages
-上部署 Hexo | Hexo</a></p>
-<p><a href="https://github.com/hexojs/awesome-hexo">GitHub -
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0J5cm9uNGovQ29va0Jvb2svYmxvYi9tYXN0ZXIvR2l0LzEtR2l0aHViX0hleG/mkK3lu7rkuKrkurrljZrlrqIubWQ=">CookBook/Git/1-Github_Hexo搭建个人博客.md
+at master · Byron4j/CookBook · GitHub<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGh1Yi5jb20vemgvcGFnZXMvcXVpY2tzdGFydCNjaGFuZ2luZy10aGUtdGl0bGUtYW5kLWRlc2NyaXB0aW9u">GitHub
+Pages 快速入门 - GitHub 文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3MvZ2l0aHViLXBhZ2Vz">在 GitHub Pages
+上部署 Hexo | Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9hd2Vzb21lLWhleG8=">GitHub -
 hexojs/awesome-hexo: A curated list of awesome things related to
-Hexo</a></p>
+Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9saW5rLmp1ZWppbi5jbi8/dGFyZ2V0PWh0dHBzJTNBJTJGJTJGdGhlbWUtbmV4dC5qcy5vcmclMkZoaWdobGlnaHQlMkY=">theme-next.js.org/highlight/<i class="fa fa-external-link-alt"></i></span>
+可以查看各种代码风格主题</p>
 <h1 id="使用github和hexo搭建个人网站">使用GitHub和hexo搭建个人网站</h1>
 <h2 id="一安装步骤">一、安装步骤：</h2>
 <h3 id="在电脑上安装node.js-和-git">1. 在电脑上安装node.js 和 git</h3>
-<p>这是git教程<a
-href="https://www.liaoxuefeng.com/wiki/896043488029600">Git教程 -
-廖雪峰的官方网站 (liaoxuefeng.com)</a></p>
+<p>这是git教程<span class="exturl" data-url="aHR0cHM6Ly93d3cubGlhb3h1ZWZlbmcuY29tL3dpa2kvODk2MDQzNDg4MDI5NjAw">Git教程 -
+廖雪峰的官方网站 (liaoxuefeng.com)<i class="fa fa-external-link-alt"></i></span></p>
 <p>安装成功后，需要将Git和GitHub账号进行绑定，具体操作如下，鼠标右键打开git
 bash（或者直接win+r cmd），需要设置user.name 和user.email配置信息：</p>
 <figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;Github 用户名&quot;</span><br><span class="line">git config --global user.email &quot;Github 注册邮箱&quot;</span><br><span class="line"></span><br><span class="line"># 生成ssh密钥连接github</span><br><span class="line">ssh-keygen -t rsa -C &quot;github 注册邮箱&quot;</span><br><span class="line"># 如果更改密钥文件名称，需加上路径，不然可能是就生成在桌面了</span><br><span class="line"># 这里会显示要设置密码，可直接回车跳过</span><br></pre></td></tr></table></figure>
-<p>接下来找到刚才生成的id_rsa.pub密钥，复制全部内容；打开<a
-href="https://link.zhihu.com/?target=https%3A//github.com/settings/keys">GitHub_Settings_keys</a>
+<p>接下来找到刚才生成的id_rsa.pub密钥，复制全部内容；打开<span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy9naXRodWIuY29tL3NldHRpbmdzL2tleXM=">GitHub_Settings_keys<i class="fa fa-external-link-alt"></i></span>
 页面，新建new SSH
 Key，title是标题，可随意填写，然后将刚才复制的id_rsa.pub密钥内容黏贴进去，最后点击Add
 SSH key即完成配置。</p>
@@ -108,11 +99,11 @@ domain输入自己的域名。</p>
 <h3 id="图床">7. 图床</h3>
 <p>博文中有图片当然可以把图片放在source文件夹，但会导致加载较慢。可以把图片上传到别的网站，获得外部链接，使用markdown语法<img
 src="外部链接" alt="图片信息" />完成图片插入，这种网站就是图床。</p>
-<p><a href="http://www.tietuku.com/">贴图库 —
-免费、高速、稳定、专业图片外链 (tietuku.com)</a></p>
+<p><span class="exturl" data-url="aHR0cDovL3d3dy50aWV0dWt1LmNvbS8=">贴图库 —
+免费、高速、稳定、专业图片外链 (tietuku.com)<i class="fa fa-external-link-alt"></i></span></p>
 <p>新浪微博</p>
-<p><a href="https://www.qiniu.com/">七牛云 | 一站式场景化智能音视频
-APaaS (qiniu.com)</a></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucWluaXUuY29tLw==">七牛云 | 一站式场景化智能音视频
+APaaS (qiniu.com)<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="个性化设置">8. 个性化设置</h3>
 <p>站点配置文件修改</p>
 <figure>
@@ -130,33 +121,40 @@ alt="image-20240306232009424" />
 <figcaption aria-hidden="true">image-20240306232009424</figcaption>
 </figure>
 ]]></content>
+      <categories>
+        <category>Blog搭建</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello World</title>
     <url>/2024/03/06/test/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very
+first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for
 more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or
+you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
 <h2 id="quick-start">Quick Start</h2>
 <h3 id="create-a-new-post">Create a new post</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="run-server">Run server</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="generate-static-files">Generate static files</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>test1</title>
+    <url>/2024/03/06/test/test1/</url>
+    <content><![CDATA[
 ]]></content>
   </entry>
 </search>
