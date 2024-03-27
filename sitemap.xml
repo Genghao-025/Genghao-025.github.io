@@ -85,36 +85,36 @@
 
   <url>
     <loc>http://kelm025.cn/</loc>
-    <lastmod>2024-03-26</lastmod>
+    <lastmod>2024-03-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>http://kelm025.cn/tags/%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2024-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://kelm025.cn/tags/transformer/</loc>
-    <lastmod>2024-03-26</lastmod>
+    <lastmod>2024-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kelm025.cn/tags/code/</loc>
-    <lastmod>2024-03-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://kelm025.cn/tags/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2024-03-26</lastmod>
+    <lastmod>2024-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kelm025.cn/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/</loc>
-    <lastmod>2024-03-26</lastmod>
+    <lastmod>2024-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -122,15 +122,15 @@
 
   
   <url>
-    <loc>http://kelm025.cn/categories/CV/</loc>
-    <lastmod>2024-03-26</lastmod>
+    <loc>http://kelm025.cn/categories/Blog/</loc>
+    <lastmod>2024-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://kelm025.cn/categories/Blog/</loc>
-    <lastmod>2024-03-26</lastmod>
+    <loc>http://kelm025.cn/categories/CV/</loc>
+    <lastmod>2024-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
