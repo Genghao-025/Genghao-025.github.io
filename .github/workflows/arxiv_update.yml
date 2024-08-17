@@ -2,7 +2,7 @@ name: Daily ArXiv Update
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # 每天早上 9 点
+    - cron: '0 9 * * *'
   workflow_dispatch:
   push:
     branches:
@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: master  # 检出 master 分支
+          ref: master
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -25,15 +25,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r arxiv/arxiv_requirements.txt
+          pip install -r arxiv/arxiv_requirements.txt || exit 1
 
       - name: Run scraper
         run: |
-          python arxiv/arxiv_scraper.py
-          
-      - name: List files in arxiv directory
-        run: ls -la /home/runner/work/Genghao-025.github.io/Genghao-025.github.io/arxiv_papers.html
+          python arxiv/arxiv_scraper.py || exit 1
 
+      - name: List files in arxiv directory
+        run: ls -la arxiv/
 
       - name: Commit and push changes
         env:
@@ -41,6 +40,6 @@ jobs:
         run: |
           git config --global user.name 'Genghao-025'
           git config --global user.email '2727994985@qq.com'
-          git add arxiv_papers.html
+          git add arxiv/arxiv_papers.html
           git commit -m 'Update ArXiv papers'
-          git push origin master  # 确保推送到 master 分支
+          git push origin master || exit 1
