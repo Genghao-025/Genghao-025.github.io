@@ -35,8 +35,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'actions@github.com'
+          git config --global user.name 'Genghao-025'
+          git config --global user.email '2727994985@qq.com'
           git add arxiv/arxiv_papers.html
           git commit -m 'Update ArXiv papers'
           git push origin master  # 确保推送到 master 分支
