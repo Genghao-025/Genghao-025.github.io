@@ -25,11 +25,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r arxiv_requirements.txt
+          pip install -r arxiv/arxiv_requirements.txt
 
       - name: Run scraper
         run: |
-          python arxiv_scraper.py
+          python arxiv/arxiv_scraper.py
 
       - name: Commit and push changes
         run: |
