@@ -4,9 +4,9 @@ on:
   schedule:
     - cron: '0 9 * * *'  # 每天早上 9 点
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - master
+  push:
+    branches:
+      - master
 
 jobs:
   update_blog:
@@ -35,4 +35,4 @@ jobs:
           git config --global user.email 'actions@github.com'
           git add arxiv_papers.html
           git commit -m 'Update ArXiv papers'
-          git push
+          git push origin master  # 确保推送到 master 分支
