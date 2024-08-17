@@ -3,6 +3,7 @@ name: Daily ArXiv Update
 on:
   schedule:
     - cron: '0 9 * * *'  # 每天早上 9 点
+  workflow_dispatch:
   # push:
   #   branches:
   #     - master
