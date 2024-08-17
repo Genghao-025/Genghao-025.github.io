@@ -1,0 +1,37 @@
+name: Daily ArXiv Update
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # 每天早上 9 点
+  push:
+    branches:
+      - master
+
+jobs:
+  update_blog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run scraper
+        run: |
+          python arxiv_scraper.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'actions@github.com'
+          git add arxiv_papers.html
+          git commit -m 'Update ArXiv papers'
+          git push
