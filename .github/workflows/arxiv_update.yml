@@ -32,7 +32,7 @@ jobs:
           python arxiv/arxiv_scraper.py
           
       - name: List files in arxiv directory
-        run: ls -la ls -la /home/runner/work/Genghao-025.github.io/Genghao-025.github.io/
+        run: ls -la /home/runner/work/Genghao-025.github.io/Genghao-025.github.io/arxiv_papers.html
 
 
       - name: Commit and push changes
