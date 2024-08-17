@@ -26,13 +26,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r arxiv/arxiv_requirements.txt
-      - name: Run scraper
+
+      - name: Run scraper and update files
         run: |
           python arxiv/arxiv_scraper.py
-          
-      - name: List files in arxiv directory
-        run: ls -la /home/runner/work/Genghao-025.github.io/Genghao-025.github.io/arxiv_papers.html
-
 
       - name: Commit and push changes
         env:
@@ -40,6 +37,12 @@ jobs:
         run: |
           git config --global user.name 'Genghao-025'
           git config --global user.email '2727994985@qq.com'
-          git add 2024/08/17/arxiv_papers/arxiv_papers.html
-          git commit -m 'Update ArXiv papers'
-          git push origin master  # 确保推送到 master 分支
+          git add 2024/08/17/arxiv_papers/arxiv_papers.html 2024/08/17/arxiv_papers/arxiv_papers.md
+          git commit -m 'Daily update ArXiv papers'
+          git push origin master
+
+      - name: Deploy to Hexo
+        run: |
+          npm install hexo-cli -g
+          hexo generate
+          hexo deploy
