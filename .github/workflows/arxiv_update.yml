@@ -30,6 +30,10 @@ jobs:
       - name: Run scraper
         run: |
           python arxiv/arxiv_scraper.py
+          
+      - name: List files in arxiv directory
+        run: ls -la arxiv/
+
 
       - name: Commit and push changes
         env:
