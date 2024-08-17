@@ -40,6 +40,6 @@ jobs:
         run: |
           git config --global user.name 'Genghao-025'
           git config --global user.email '2727994985@qq.com'
-          git add 2024/08/17/arxiv papers/arxiv_papers.html
+          git add 2024/08/17/arxiv_papers/arxiv_papers.html
           git commit -m 'Update ArXiv papers'
           git push origin master  # 确保推送到 master 分支
