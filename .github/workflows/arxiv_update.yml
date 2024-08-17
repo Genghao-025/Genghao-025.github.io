@@ -37,6 +37,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
-          git add arxiv_papers.html
+          git add arxiv/arxiv_papers.html
           git commit -m 'Update ArXiv papers'
           git push origin master  # 确保推送到 master 分支
