@@ -3,9 +3,9 @@ name: Daily ArXiv Update
 on:
   schedule:
     - cron: '0 9 * * *'  # 每天早上 9 点
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
 
 jobs:
   update_blog:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r arxiv_requirements.txt
 
       - name: Run scraper
         run: |
