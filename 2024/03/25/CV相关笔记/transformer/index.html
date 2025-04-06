@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-bounce.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kelm025.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一、transformer原理 参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;340149804 1.1 transformer的提出 RNN很不容易并行化。因为在RNN中，当前状态依赖于上一步的状态。 RNN不能并行指的是不能在一个样本内部并行，即当前这一个“句子”输入进去，其中后一个词依赖于前一个词。但是，RNN可以进行数据并行，即一次性输入多个样本，也就是一个batch">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="transformer">
+<meta property="og:url" content="http://kelm025.cn/2024/03/25/CV%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/transformer/index.html">
+<meta property="og:site_name" content="Kelm2">
+<meta property="og:description" content="一、transformer原理 参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;340149804 1.1 transformer的提出 RNN很不容易并行化。因为在RNN中，当前状态依赖于上一步的状态。 RNN不能并行指的是不能在一个样本内部并行，即当前这一个“句子”输入进去，其中后一个词依赖于前一个词。但是，RNN可以进行数据并行，即一次性输入多个样本，也就是一个batch">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Genghao-025/kelm025-img/images/v2-58ac6e864d336abce052cf36d480cfee_1440w.webp">
+<meta property="article:published_time" content="2024-03-25T10:21:37.000Z">
+<meta property="article:modified_time" content="2025-04-06T01:21:50.284Z">
+<meta property="article:author" content="kelm2">
+<meta property="article:tag" content="transformer">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Genghao-025/kelm025-img/images/v2-58ac6e864d336abce052cf36d480cfee_1440w.webp">
+
+
+<link rel="canonical" href="http://kelm025.cn/2024/03/25/CV%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/transformer/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kelm025.cn/2024/03/25/CV%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/transformer/","path":"2024/03/25/CV相关笔记/transformer/","title":"transformer"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>transformer | Kelm2</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kelm2" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kelm2</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Forever love Pikachu</p>
+      <img class="custom-logo-image" src="/images/custom_logo.jpg" alt="Kelm2">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a></li><li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Docs</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80transformer%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">一、transformer原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#transformer%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 transformer的提出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transformer-%E4%B8%AD%E7%9A%84-positional-encoding"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 transformer 中的
+Positional Encoding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8Ecnn%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 与CNN的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 LN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decoder-%E4%B8%AD%E7%9A%84-multihead-attention"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Decoder 中的 Multihead
+Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decoder-%E8%AE%AD%E7%BB%83%E5%B9%B6%E8%A1%8C"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Decoder 训练并行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8Ctransformer-%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">二、transformer 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#scaleddotproductattention"><span class="nav-number">2.1.</span> <span class="nav-text">ScaledDotProductAttention：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#positionalencoding"><span class="nav-number">2.2.</span> <span class="nav-text">PositionalEncoding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multi-head-attention"><span class="nav-number">2.3.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%ADfeed-forward-network"><span class="nav-number">2.4.</span> <span class="nav-text">前向传播Feed Forward
+Network：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#encoderlayer"><span class="nav-number">2.5.</span> <span class="nav-text">EncoderLayer：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decoderlayer"><span class="nav-number">2.6.</span> <span class="nav-text">DecoderLayer：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#encoder"><span class="nav-number">2.7.</span> <span class="nav-text">Encoder：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decoder"><span class="nav-number">2.8.</span> <span class="nav-text">Decoder：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">2.9.</span> <span class="nav-text">整体结构：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A7%E7%94%9Fmask"><span class="nav-number">2.10.</span> <span class="nav-text">产生Mask：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kelm2"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">kelm2</p>
+  <div class="site-description" itemprop="description">Climbing!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+<!-- recent posts -->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kelm025.cn/2024/03/25/CV%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/transformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="kelm2">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kelm2">
+      <meta itemprop="description" content="Climbing!">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="transformer | Kelm2">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          transformer
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-25 10:21:37" itemprop="dateCreated datePublished" datetime="2024-03-25T10:21:37+00:00">2024-03-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-06 01:21:50" itemprop="dateModified" datetime="2025-04-06T01:21:50+00:00">2025-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="一transformer原理">一、transformer原理</h2>
+<p>参考链接：https://zhuanlan.zhihu.com/p/340149804</p>
+<h3 id="transformer的提出">1.1 transformer的提出</h3>
+<p>RNN很不容易并行化。因为在RNN中，当前状态依赖于上一步的状态。</p>
+<p>RNN不能并行指的是不能在<strong>一个样本内部并行</strong>，即当前这一个“句子”输入进去，其中后一个词依赖于前一个词。<strong>但是</strong>，RNN可以进行数据并行，即一次性输入多个样本，也就是一个batch内的多个样本可以并行处理。而CNN，Linear的结构是在一个样本内也能够进行并行计算。
+表面上可以用CNN代替RNN做到相同的输入输出，但是CNN只能考虑到有限的内容（局限于卷积核的大小）。而RNN可以考虑到全局的信息。CNN也能考虑到长的dependency，只需要多堆叠几次filter，上层的filter就能考虑到长的dependency。而且CNN是可以并行的。</p>
+<h3 id="transformer-中的-positional-encoding">1.2 transformer 中的
+<strong>Positional Encoding</strong></h3>
+<p>self-attention中没有位置的信息，所以在原始论文中，作者给每一个位置规定一个表示位置信息的向量
+<span class="math inline">\(e^i\)</span> ，让它与 <span
+class="math inline">\(a^i\)</span> 加在一起之后作为新的 <span
+class="math inline">\(a^i\)</span> 参与后面的运算过程，但是这个向量
+<span
+class="math inline">\(e^i\)</span>是由人工设定的，而不是神经网络学习出来的。每一个位置都有一个不同的
+<span class="math inline">\(e^i\)</span> 。</p>
+<p><strong>为什么<span class="math inline">\(e^i\)</span> 是与<span
+class="math inline">\(a^i\)</span>
+相加，而不是concatenate，加起来以后，原来表示位置的资讯就混合到<span
+class="math inline">\(a^i\)</span> 中了，不就很难被利用了吗？</strong>
+<span class="math inline">\(e^i\)</span> 与<span
+class="math inline">\(a^i\)</span>
+相加相当于原始输入和原始的位置信息（如one-hot编码的位置信息）concatenate，而one-hot到<span
+class="math inline">\(e^i\)</span>的矩阵即是相当于固定了。</p>
+<p>transformer中的PE维度与单词Embedding维度相同。PE可以训练得到，也可以直接使用公式得到。计算公式如下：
+<span class="math display">\[
+PE_{(pos,2i)}=\sin\left(\frac{pos}{10000^{2i/d_{\text model}}}\right)
+\]</span> <span class="math display">\[
+PE_{(pos,2i+1)}=\cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)
+\]</span></p>
+<p>公式中，<span
+class="math inline">\(pos\)</span>表示token在sequence中的位置，第一个token即是0，<span
+class="math inline">\(i\)</span>的取值范围是<span
+class="math inline">\([0,...,d_{\text{model}}/2]\)</span>。 原文中<span
+class="math inline">\(d_{\text{model}}\)</span>是512，其中底数是10000。</p>
+<ul class="task-list">
+<li><label><input
+type="checkbox" />为什么是10000呢，这里我也不知道，留着以后查资料。</label></li>
+</ul>
+<h3 id="与cnn的对比">1.3 与CNN的对比</h3>
+<p>使用transformer时，一个pixel产生query，其余pixel产生key，在inner-product的时候考虑的不是一个小范围，而是一整张图片。
+但是在使用CNN时，只考虑的是卷积核中的内容，而不是全局信息，所以CNN可以看作简单的self-attentioin。</p>
+<h3 id="ln">1.4 LN</h3>
+<p>transformer使用的是Layer Normalization，不使用batch
+normalization是因为，nlp输入的长度不固定，将一个batch内的所有数据进行normalization效果不好，故只对当前数据进行normalization。</p>
+<h3 id="decoder-中的-multihead-attention">1.5 Decoder 中的 Multihead
+Attention</h3>
+<ul>
+<li>包含两个Multi-head Attention层</li>
+<li>第一个Multi-head Attention 层采用了Mask操作；</li>
+<li>第二个Multi-head Attention
+层的key，Value矩阵使用<strong>Encoder</strong>的编码信息矩阵C进行计算，而Query使用的是上一个<strong>Decoder</strong>
+Block的输出计算</li>
+<li>最后有一个softmax层计算下一个单词的概率</li>
+</ul>
+<p>对于Masked Multi-head
+Attention，Masked在Scale操作之后，在Softmax操作之前。</p>
+<p><strong>Key，Value</strong>来自Transformer
+Encoder的输出，所以可以看做<strong>句子(Sequence)/图片(image)</strong>的<strong>内容信息(content，比如句意是："我有一只猫"，图片内容是："有几辆车，几个人等等")</strong>。
+<strong>Query</strong>表达了一种诉求：希望得到什么，可以看做<strong>引导信息(guide)</strong>。
+通过Multi-Head
+Self-attention结合在一起的过程就相当于是<strong>把我们需要的内容信息指导表达出来</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Genghao-025/kelm025-img/images/v2-58ac6e864d336abce052cf36d480cfee_1440w.webp" alt="img" style="zoom:70%;" /></p>
+<h3 id="decoder-训练并行">1.6 Decoder 训练并行</h3>
+<p>Decoder可以在训练过程中使用 Teacher
+Forcing并行化训练。<strong>即将正确的单词序列 (<Begin> I have a cat)
+和对应输出 (I have a cat <end>) 传递到 Decoder。那么在预测第</strong>
+<span class="math inline">\(i\)</span>
+<strong>个输出时，就要将第</strong> <span
+class="math inline">\(i\)</span>+1
+<strong>之后的单词掩盖住，</strong></p>
+<p>测试时：</p>
+<ol type="1">
+<li>输入<Begin>，解码器输出 I 。</li>
+<li>输入前面已经解码的<Begin>和 I，解码器输出have。</li>
+<li>输入已经解码的<Begin>，I, have, a,
+cat，解码器输出解码结束标志位<end>，每次解码都会利用前面已经解码输出的所有单词嵌入信息。</li>
+</ol>
+<p>训练时：
+<strong>不采用类似RNN的方法</strong>一个一个目标单词嵌入向量顺序输入训练，而是采用<strong>类似编码器中的矩阵并行算法，一步就把所有目标单词预测出来</strong>。要实现这个功能就可以参考编码器的操作，把目标单词嵌入向量组成矩阵一次输入即可。即：<strong>并行化训练。</strong></p>
+<h2 id="二transformer-代码">二、transformer 代码</h2>
+<h3
+id="scaleddotproductattention"><strong>ScaledDotProductAttention：</strong></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ScaledDotProductAttention</span>(nn.Module):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Scaled Dot-Product Attention &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, temperature, attn_dropout=<span class="number">0.1</span></span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.temperature = temperature</span><br><span class="line">        self.dropout = nn.Dropout(attn_dropout)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, q, k, v, mask=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">        attn = torch.matmul(q / self.temperature, k.transpose(<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            attn = attn.masked_fill(mask == <span class="number">0</span>, -<span class="number">1e9</span>)</span><br><span class="line"></span><br><span class="line">        attn = self.dropout(F.softmax(attn, dim=-<span class="number">1</span>))</span><br><span class="line">        output = torch.matmul(attn, v)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> output, attn</span><br></pre></td></tr></table></figure>
+<h3 id="positionalencoding">PositionalEncoding</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PositionalEncoding</span>(nn.Module):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_hid, n_position=<span class="number">200</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(PositionalEncoding, self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Not a parameter</span></span><br><span class="line">        self.register_buffer(<span class="string">&#x27;pos_table&#x27;</span>, self._get_sinusoid_encoding_table(n_position, d_hid))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_get_sinusoid_encoding_table</span>(<span class="params">self, n_position, d_hid</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27; Sinusoid position encoding table &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> make it with torch instead of numpy</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">get_position_angle_vec</span>(<span class="params">position</span>):</span><br><span class="line">            <span class="keyword">return</span> [position / np.power(<span class="number">10000</span>, <span class="number">2</span> * (hid_j // <span class="number">2</span>) / d_hid) <span class="keyword">for</span> hid_j <span class="keyword">in</span> <span class="built_in">range</span>(d_hid)]</span><br><span class="line"></span><br><span class="line">        sinusoid_table = np.array([get_position_angle_vec(pos_i) <span class="keyword">for</span> pos_i <span class="keyword">in</span> <span class="built_in">range</span>(n_position)])</span><br><span class="line">        sinusoid_table[:, <span class="number">0</span>::<span class="number">2</span>] = np.sin(sinusoid_table[:, <span class="number">0</span>::<span class="number">2</span>])  <span class="comment"># dim 2i</span></span><br><span class="line">        sinusoid_table[:, <span class="number">1</span>::<span class="number">2</span>] = np.cos(sinusoid_table[:, <span class="number">1</span>::<span class="number">2</span>])  <span class="comment"># dim 2i+1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> torch.FloatTensor(sinusoid_table).unsqueeze(<span class="number">0</span>)<span class="comment">#(1,N,d)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># x(B,N,d)</span></span><br><span class="line">        <span class="keyword">return</span> x + self.pos_table[:, :x.size(<span class="number">1</span>)].clone().detach()</span><br></pre></td></tr></table></figure>
+<h3 id="multi-head-attention">Multi-Head Attention</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MultiHeadAttention</span>(nn.Module):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Multi-Head Attention module &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, n_head, d_model, d_k, d_v, dropout=<span class="number">0.1</span></span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">        self.n_head = n_head</span><br><span class="line">        self.d_k = d_k</span><br><span class="line">        self.d_v = d_v</span><br><span class="line"></span><br><span class="line">        self.w_qs = nn.Linear(d_model, n_head * d_k, bias=<span class="literal">False</span>)</span><br><span class="line">        self.w_ks = nn.Linear(d_model, n_head * d_k, bias=<span class="literal">False</span>)</span><br><span class="line">        self.w_vs = nn.Linear(d_model, n_head * d_v, bias=<span class="literal">False</span>)</span><br><span class="line">        self.fc = nn.Linear(n_head * d_v, d_model, bias=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">        self.attention = ScaledDotProductAttention(temperature=d_k ** <span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line">        self.layer_norm = nn.LayerNorm(d_model, eps=<span class="number">1e-6</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, q, k, v, mask=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">        d_k, d_v, n_head = self.d_k, self.d_v, self.n_head</span><br><span class="line">        sz_b, len_q, len_k, len_v = q.size(<span class="number">0</span>), q.size(<span class="number">1</span>), k.size(<span class="number">1</span>), v.size(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        residual = q</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Pass through the pre-attention projection: b x lq x (n*dv)</span></span><br><span class="line">        <span class="comment"># Separate different heads: b x lq x n x dv</span></span><br><span class="line">        q = self.w_qs(q).view(sz_b, len_q, n_head, d_k)</span><br><span class="line">        k = self.w_ks(k).view(sz_b, len_k, n_head, d_k)</span><br><span class="line">        v = self.w_vs(v).view(sz_b, len_v, n_head, d_v)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Transpose for attention dot product: b x n x lq x dv</span></span><br><span class="line">        q, k, v = q.transpose(<span class="number">1</span>, <span class="number">2</span>), k.transpose(<span class="number">1</span>, <span class="number">2</span>), v.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            mask = mask.unsqueeze(<span class="number">1</span>)   <span class="comment"># For head axis broadcasting.</span></span><br><span class="line"></span><br><span class="line">        q, attn = self.attention(q, k, v, mask=mask)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#q (sz_b,n_head,N=len_q,d_k)</span></span><br><span class="line">        <span class="comment">#k (sz_b,n_head,N=len_k,d_k)</span></span><br><span class="line">        <span class="comment">#v (sz_b,n_head,N=len_v,d_v)</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Transpose to move the head dimension back: b x lq x n x dv</span></span><br><span class="line">        <span class="comment"># Combine the last two dimensions to concatenate all the heads together: b x lq x (n*dv)</span></span><br><span class="line">        q = q.transpose(<span class="number">1</span>, <span class="number">2</span>).contiguous().view(sz_b, len_q, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#q (sz_b,len_q,n_head,N * d_k)</span></span><br><span class="line">        q = self.dropout(self.fc(q))</span><br><span class="line">        q += residual</span><br><span class="line"></span><br><span class="line">        q = self.layer_norm(q)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> q, attn</span><br></pre></td></tr></table></figure>
+<h3 id="前向传播feed-forward-network"><strong>前向传播Feed Forward
+Network：</strong></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PositionwiseFeedForward</span>(nn.Module):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; A two-feed-forward-layer module &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_in, d_hid, dropout=<span class="number">0.1</span></span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.w_1 = nn.Linear(d_in, d_hid) <span class="comment"># position-wise</span></span><br><span class="line">        self.w_2 = nn.Linear(d_hid, d_in) <span class="comment"># position-wise</span></span><br><span class="line">        self.layer_norm = nn.LayerNorm(d_in, eps=<span class="number">1e-6</span>)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line"></span><br><span class="line">        residual = x</span><br><span class="line"></span><br><span class="line">        x = self.w_2(F.relu(self.w_1(x)))</span><br><span class="line">        x = self.dropout(x)</span><br><span class="line">        x += residual</span><br><span class="line"></span><br><span class="line">        x = self.layer_norm(x)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<h3 id="encoderlayer"><strong>EncoderLayer：</strong></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">EncoderLayer</span>(nn.Module):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Compose with two layers &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, d_inner, n_head, d_k, d_v, dropout=<span class="number">0.1</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(EncoderLayer, self).__init__()</span><br><span class="line">        self.slf_attn = MultiHeadAttention(n_head, d_model, d_k, d_v, dropout=dropout)</span><br><span class="line">        self.pos_ffn = PositionwiseFeedForward(d_model, d_inner, dropout=dropout)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, enc_input, slf_attn_mask=<span class="literal">None</span></span>):</span><br><span class="line">        enc_output, enc_slf_attn = self.slf_attn(</span><br><span class="line">            enc_input, enc_input, enc_input, mask=slf_attn_mask)</span><br><span class="line">        enc_output = self.pos_ffn(enc_output)</span><br><span class="line">        <span class="keyword">return</span> enc_output, enc_slf_attn</span><br></pre></td></tr></table></figure>
+<h3 id="decoderlayer"><strong>DecoderLayer：</strong></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DecoderLayer</span>(nn.Module):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; Compose with three layers &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, d_inner, n_head, d_k, d_v, dropout=<span class="number">0.1</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(DecoderLayer, self).__init__()</span><br><span class="line">        self.slf_attn = MultiHeadAttention(n_head, d_model, d_k, d_v, dropout=dropout)</span><br><span class="line">        self.enc_attn = MultiHeadAttention(n_head, d_model, d_k, d_v, dropout=dropout)</span><br><span class="line">        self.pos_ffn = PositionwiseFeedForward(d_model, d_inner, dropout=dropout)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params"></span></span><br><span class="line"><span class="params">            self, dec_input, enc_output,</span></span><br><span class="line"><span class="params">            slf_attn_mask=<span class="literal">None</span>, dec_enc_attn_mask=<span class="literal">None</span></span>):</span><br><span class="line">        dec_output, dec_slf_attn = self.slf_attn(</span><br><span class="line">            dec_input, dec_input, dec_input, mask=slf_attn_mask)</span><br><span class="line">        dec_output, dec_enc_attn = self.enc_attn(</span><br><span class="line">            dec_output, enc_output, enc_output, mask=dec_enc_attn_mask)</span><br><span class="line">        dec_output = self.pos_ffn(dec_output)</span><br><span class="line">        <span class="keyword">return</span> dec_output, dec_slf_attn, dec_enc_attn</span><br></pre></td></tr></table></figure>
+<h3 id="encoder"><strong>Encoder：</strong></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Encoder</span>(nn.Module):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; A encoder model with self attention mechanism. &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">            self, n_src_vocab, d_word_vec, n_layers, n_head, d_k, d_v,</span></span><br><span class="line"><span class="params">            d_model, d_inner, pad_idx, dropout=<span class="number">0.1</span>, n_position=<span class="number">200</span></span>):</span><br><span class="line"></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">        self.src_word_emb = nn.Embedding(n_src_vocab, d_word_vec, padding_idx=pad_idx)</span><br><span class="line">        self.position_enc = PositionalEncoding(d_word_vec, n_position=n_position)</span><br><span class="line">        self.dropout = nn.Dropout(p=dropout)</span><br><span class="line">        self.layer_stack = nn.ModuleList([</span><br><span class="line">            EncoderLayer(d_model, d_inner, n_head, d_k, d_v, dropout=dropout)</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n_layers)])</span><br><span class="line">        self.layer_norm = nn.LayerNorm(d_model, eps=<span class="number">1e-6</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, src_seq, src_mask, return_attns=<span class="literal">False</span></span>):</span><br><span class="line"></span><br><span class="line">        enc_slf_attn_list = []</span><br><span class="line"></span><br><span class="line">        <span class="comment"># -- Forward</span></span><br><span class="line">        </span><br><span class="line">        enc_output = self.dropout(self.position_enc(self.src_word_emb(src_seq)))</span><br><span class="line">        enc_output = self.layer_norm(enc_output)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> enc_layer <span class="keyword">in</span> self.layer_stack:</span><br><span class="line">            enc_output, enc_slf_attn = enc_layer(enc_output, slf_attn_mask=src_mask)</span><br><span class="line">            enc_slf_attn_list += [enc_slf_attn] <span class="keyword">if</span> return_attns <span class="keyword">else</span> []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> return_attns:</span><br><span class="line">            <span class="keyword">return</span> enc_output, enc_slf_attn_list</span><br><span class="line">        <span class="keyword">return</span> enc_output,</span><br></pre></td></tr></table></figure>
+<h3 id="decoder"><strong>Decoder：</strong></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Decoder</span>(nn.Module):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; A decoder model with self attention mechanism. &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, trg_seq, trg_mask, enc_output, src_mask, return_attns=<span class="literal">False</span></span>):</span><br><span class="line"></span><br><span class="line">        dec_slf_attn_list, dec_enc_attn_list = [], []</span><br><span class="line"></span><br><span class="line">        <span class="comment"># -- Forward</span></span><br><span class="line">        dec_output = self.dropout(self.position_enc(self.trg_word_emb(trg_seq)))</span><br><span class="line">        dec_output = self.layer_norm(dec_output)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> dec_layer <span class="keyword">in</span> self.layer_stack:</span><br><span class="line">            dec_output, dec_slf_attn, dec_enc_attn = dec_layer(</span><br><span class="line">                dec_output, enc_output, slf_attn_mask=trg_mask, dec_enc_attn_mask=src_mask)</span><br><span class="line">            dec_slf_attn_list += [dec_slf_attn] <span class="keyword">if</span> return_attns <span class="keyword">else</span> []</span><br><span class="line">            dec_enc_attn_list += [dec_enc_attn] <span class="keyword">if</span> return_attns <span class="keyword">else</span> []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> return_attns:</span><br><span class="line">            <span class="keyword">return</span> dec_output, dec_slf_attn_list, dec_enc_attn_list</span><br><span class="line">        <span class="keyword">return</span> dec_output,</span><br></pre></td></tr></table></figure>
+<h3 id="整体结构"><strong>整体结构：</strong></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Transformer</span>(nn.Module):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; A sequence to sequence model with attention mechanism. &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">            self, n_src_vocab, n_trg_vocab, src_pad_idx, trg_pad_idx,</span></span><br><span class="line"><span class="params">            d_word_vec=<span class="number">512</span>, d_model=<span class="number">512</span>, d_inner=<span class="number">2048</span>,</span></span><br><span class="line"><span class="params">            n_layers=<span class="number">6</span>, n_head=<span class="number">8</span>, d_k=<span class="number">64</span>, d_v=<span class="number">64</span>, dropout=<span class="number">0.1</span>, n_position=<span class="number">200</span>,</span></span><br><span class="line"><span class="params">            trg_emb_prj_weight_sharing=<span class="literal">True</span>, emb_src_trg_weight_sharing=<span class="literal">True</span></span>):</span><br><span class="line"></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">        self.src_pad_idx, self.trg_pad_idx = src_pad_idx, trg_pad_idx</span><br><span class="line"></span><br><span class="line">        self.encoder = Encoder(</span><br><span class="line">            n_src_vocab=n_src_vocab, n_position=n_position,</span><br><span class="line">            d_word_vec=d_word_vec, d_model=d_model, d_inner=d_inner,</span><br><span class="line">            n_layers=n_layers, n_head=n_head, d_k=d_k, d_v=d_v,</span><br><span class="line">            pad_idx=src_pad_idx, dropout=dropout)</span><br><span class="line"></span><br><span class="line">        self.decoder = Decoder(</span><br><span class="line">            n_trg_vocab=n_trg_vocab, n_position=n_position,</span><br><span class="line">            d_word_vec=d_word_vec, d_model=d_model, d_inner=d_inner,</span><br><span class="line">            n_layers=n_layers, n_head=n_head, d_k=d_k, d_v=d_v,</span><br><span class="line">            pad_idx=trg_pad_idx, dropout=dropout)</span><br><span class="line"></span><br><span class="line">        self.trg_word_prj = nn.Linear(d_model, n_trg_vocab, bias=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> self.parameters():</span><br><span class="line">            <span class="keyword">if</span> p.dim() &gt; <span class="number">1</span>:</span><br><span class="line">                nn.init.xavier_uniform_(p) </span><br><span class="line"></span><br><span class="line">        <span class="keyword">assert</span> d_model == d_word_vec, \</span><br><span class="line">        <span class="string">&#x27;To facilitate the residual connections, \</span></span><br><span class="line"><span class="string">         the dimensions of all module outputs shall be the same.&#x27;</span></span><br><span class="line"></span><br><span class="line">        self.x_logit_scale = <span class="number">1.</span></span><br><span class="line">        <span class="keyword">if</span> trg_emb_prj_weight_sharing:</span><br><span class="line">            <span class="comment"># Share the weight between target word embedding &amp; last dense layer</span></span><br><span class="line">            self.trg_word_prj.weight = self.decoder.trg_word_emb.weight</span><br><span class="line">            self.x_logit_scale = (d_model ** -<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> emb_src_trg_weight_sharing:</span><br><span class="line">            self.encoder.src_word_emb.weight = self.decoder.trg_word_emb.weight</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, src_seq, trg_seq</span>):</span><br><span class="line"></span><br><span class="line">        src_mask = get_pad_mask(src_seq, self.src_pad_idx)</span><br><span class="line">        trg_mask = get_pad_mask(trg_seq, self.trg_pad_idx) &amp; get_subsequent_mask(trg_seq)</span><br><span class="line"></span><br><span class="line">        enc_output, *_ = self.encoder(src_seq, src_mask)</span><br><span class="line">        dec_output, *_ = self.decoder(trg_seq, trg_mask, enc_output, src_mask)</span><br><span class="line">        seq_logit = self.trg_word_prj(dec_output) * self.x_logit_scale</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> seq_logit.view(-<span class="number">1</span>, seq_logit.size(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="产生mask"><strong>产生Mask：</strong></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_pad_mask</span>(<span class="params">seq, pad_idx</span>):</span><br><span class="line">    <span class="keyword">return</span> (seq != pad_idx).unsqueeze(-<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_subsequent_mask</span>(<span class="params">seq</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; For masking out the subsequent info. &#x27;&#x27;&#x27;</span></span><br><span class="line">    sz_b, len_s = seq.size()</span><br><span class="line">    subsequent_mask = (<span class="number">1</span> - torch.triu(</span><br><span class="line">        torch.ones((<span class="number">1</span>, len_s, len_s), device=seq.device), diagonal=<span class="number">1</span>)).<span class="built_in">bool</span>()</span><br><span class="line">    <span class="keyword">return</span> subsequent_mask</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/transformer/" rel="tag"><i class="fa fa-tag"></i> transformer</a>
+              <a href="/tags/code/" rel="tag"><i class="fa fa-tag"></i> code</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/25/CV%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/%E5%A4%9A%E6%A8%A1%E6%80%81/" rel="prev" title="多模态">
+                  <i class="fa fa-angle-left"></i> 多模态
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/04/06/arxiv_papers/arxiv_papers/" rel="next" title="Daily Diffusion Papers">
+                  Daily Diffusion Papers <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kelm2</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+<!--<div>
+  <span id="sitetime"></span>
+  <script language=javascript>
+      function siteTime(){
+          window.setTimeout("siteTime()", 1000);
+          var seconds = 1000;
+          var minutes = seconds * 60;
+          var hours = minutes * 60;
+          var days = hours * 24;
+          var years = days * 365;
+          var today = new Date();
+          var todayYear = today.getFullYear();
+          var todayMonth = today.getMonth()+1;
+          var todayDate = today.getDate();
+          var todayHour = today.getHours();
+          var todayMinute = today.getMinutes();
+          var todaySecond = today.getSeconds();
+          /* 
+          Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+          year - 作为date对象的年份，为4位年份值
+          month - 0-11之间的整数，做为date对象的月份
+          day - 1-31之间的整数，做为date对象的天数
+          hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+          minutes - 0-59之间的整数，做为date对象的分钟数
+          seconds - 0-59之间的整数，做为date对象的秒数
+          microseconds - 0-999之间的整数，做为date对象的毫秒数
+      */
+          var t1 = Date.UTC(2024,02,29,13,14,00); //北京时间2018-2-13 00:00:00
+          var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+          var diff = t2-t1;
+      var diffYears = Math.floor(diff/years);
+      var diffDays = Math.floor((diff/days)-diffYears*365);
+      var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+      var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+      var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById("sitetime").innerHTML=" 已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+    }
+      siteTime();
+  </script>
+</div>
+-->
+
+
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+  var now = new Date();
+  function createtime() {
+    var grt= new Date("02/29/2024 00:00:00");//此处修改你的建站时间或者网站上线时间
+    now.setTime(now.getTime()+250);
+    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds); 
+    if(String(snum).length ==1 ){snum = "0" + snum;}
+    // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+   }
+setInterval("createtime()",250);
+</script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dlbmdoYW8tMDI1" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://kelm025.cn/2025/04/06/arxiv_papers/arxiv_papers/</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/tags/index.html</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/custom-name/index.html</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/categories/index.html</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/2025/04/06/test/hello-world/</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/2024/03/06/test/test1/</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/2024/03/24/Blog%E6%90%AD%E5%BB%BA/blog%E6%90%AD%E5%BB%BA/</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/2024/03/24/CV%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/VAE/</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/2024/03/24/CV%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/VIT%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/2024/03/25/CV%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/transformer/</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/2024/03/25/CV%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/%E5%A4%9A%E6%A8%A1%E6%80%81/</loc>
+    
+    <lastmod>2025-04-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>http://kelm025.cn/</loc>
+    <lastmod>2025-04-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>http://kelm025.cn/tags/%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2025-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/tags/transformer/</loc>
+    <lastmod>2025-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/tags/code/</loc>
+    <lastmod>2025-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/</loc>
+    <lastmod>2025-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/tags/Paper/</loc>
+    <lastmod>2025-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>http://kelm025.cn/categories/Blog/</loc>
+    <lastmod>2025-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://kelm025.cn/categories/CV/</loc>
+    <lastmod>2025-04-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>
